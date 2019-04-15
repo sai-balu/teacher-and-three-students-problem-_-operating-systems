@@ -1,0 +1,253 @@
+(i)
+#include<iostream>
+#include<conio.h>
+using namespace std;
+struct Student
+{
+	bool  resource_pen;
+	bool  resource_paper;
+	bool  resource_question_paper;
+	bool resource_all_resources;
+}s1,s2,s3;
+void student_process_one()
+{
+	s1.resource_all_resources=1;
+	s1.resource_paper=1;
+	s1.resource_question_paper=1;
+	cout<<"Student Process One Completed"<<endl;
+}	
+void student_process_two()
+{
+	s2.resource_all_resources=1;
+	s2.resource_pen=1;
+	s2.resource_question_paper=1;
+	cout<<"Student Process Two Completed"<<endl;
+}
+void student_process_three()
+{
+	s3.resource_all_resources=1;
+	s3.resource_pen=1;
+	s3.resource_paper=1;
+	cout<<"Student Process Three Completed"<<endl;
+}
+int main()
+{
+	s1.resource_all_resources=0;s1.resource_paper=0;s1.resource_pen=0;s1.resource_question_paper=0;	
+		s2.resource_all_resources=0;s2.resource_paper=0;s2.resource_pen=0;s2.resource_question_paper=0;
+		s3.resource_all_resources=0;s3.resource_paper=0;s3.resource_pen=0;s3.resource_question_paper=0;			
+	do
+	{
+		int a,b;
+		cout<<"1.Pen"<<endl;
+		cout<<"2.Paper"<<endl;
+		cout<<"3.Question Paper"<<endl;
+		cout<<"Select any two items to be placed on the shared table:"<<endl;
+		cin>>a>>b;	
+		if(a==1 && b==2  && s3.resource_all_resources==0)
+		{
+			student_process_three();
+		}
+		if(a==2 && b==1  && s3.resource_all_resources==0)
+		{
+			student_process_three();
+		}
+		if(a==2 && b==3  && s1.resource_all_resources==0)
+		{
+			student_process_one();
+		}
+		if(a==3 && b==2  && s1.resource_all_resources==0)
+		{
+			student_process_one();
+		}
+		if(a==1 && b==3 && s2.resource_all_resources==0)
+		{
+			student_process_two();
+		}
+		if(a==3 && b==1 && s2.resource_all_resources==0)
+		{
+			student_process_two();
+		}
+	}
+	while(s1.resource_all_resources==0||s2.resource_all_resources==0||s3.resource_all_resources==0);
+	cout<<"All Student Processes Completed";
+	getch();
+}
+
+
+(ii)
+#include<stdio.h> 
+#include<conio.h> 
+#include<stdlib.h> 
+#include<unistd.h> 
+int t[2]; 
+int n,y,z=1; 
+//pen paper questinpaper 
+char Array[3] = {1,2,3}; 
+int main() 
+{ 
+ printf("\t\t\t\t\tSHARING ALGORITHM......"); 
+ while(z>0) 
+ { 
+  for(y=1;y<3;y++) 
+  { 
+   t[y] = Array[rand()%3]; 
+  } 
+  if(t[1]==1 && t[2]==2)             
+  { 
+   printf("faculty provide: pen & paper to student who having question paper with him."); 
+   sleep(2); 
+  } 
+  else if(t[1]==2 && t[2]==3) 
+  { 
+   printf("\nTeacher Provide :paper & question paper to student who having pen with him."); 
+   sleep(2); 
+  } 
+  else if(t[1]==1 && t[2]==3) 
+  { 
+   printf("\nTeacher Provide :pen & question paper to student who having paper with him."); 
+   sleep(2); 
+  } 
+  else if(t[1]==2 && t[2]==1) 
+  { 
+   printf("\nTeacher Provide :paper & pen to student who is having question paper with him"); 
+   sleep(2); 
+  } 
+  else if(t[1]==3 && t[2]==2) 
+  { 
+   printf("\nTeacher Provide :question paper & paper to student who is having pen with him."); 
+   sleep(2); 
+  } 
+  else if(t[1]==3 && t[2]==1) 
+  { 
+   printf("\nTeacher Provide :-question paper & pen to student who is having paper with him"); 
+   sleep(2); 
+  } 
+ } 
+// return 0; 
+} 
+ 
+ 
+ 
+#include<stdio.h> 
+#include<conio.h> 
+#include<stdlib.h> 
+#include<unistd.h> 
+struct t 
+{ 
+ int arrivaltime; 
+}; 
+int sequencecounter,firstcome,iterativesc=0, iterativefc= 0; 
+int z,mc1=0,mc2=0,mc=0; 
+void program(struct t v1[],struct t v2[]) 
+{ 
+ struct t f[firstcome],s[sequencecounter],m[sequencecounter+firstcome]; 
+ for(z=0;z<sequencecounter;z++) 
+ { 
+  s[z]=v2[z]; 
+ } 
+ for(z=0;z<firstcome;z++) 
+ { 
+  f[z]=v1[z]; 
+ } 
+ if( firstcome!=0  && sequencecounter!=0) 
+ { 
+  while(iterativesc<sequencecounter && iterativefc<firstcome) 
+  { 
+   if(f[iterativefc].arrivaltime == s[iterativesc].arrivaltime) 
+   { 
+    m[mc1] = f[iterativefc]; 
+    printf("Faculty %d will issue the book\n",mc1+1); 
+    mc1++; 
+    mc++; 
+    iterativefc++; 
+    m[mc2]= s[iterativesc]; 
+    printf("Student %d will issue the book\n",mc2+1); 
+    mc2++; 
+    iterativesc++; 
+    mc++; 
+   } 
+   else if(f[iterativefc].arrivaltime < s[iterativesc].arrivaltime) 
+   { 
+    m[mc1]= f[iterativefc]; 
+    printf("Faculty %d will issue the book\n",mc1+1); 
+    mc1++; 
+    iterativefc++; 
+    mc++; 
+   } 
+   else if(f[iterativefc].arrivaltime > s[iterativesc].arrivaltime) 
+   { 
+    m[mc2]= s[iterativesc]; 
+    printf("Student %d will issue the book\n",mc2+1); 
+    mc2++; 
+    mc++; 
+    iterativesc++; 
+   } 
+   else; 
+  } 
+  if(mc != (firstcome+sequencecounter)) 
+  { 
+   if(firstcome!=iterativefc) 
+   { 
+    while(iterativefc!=firstcome) 
+    { 
+     m[mc1]= f[iterativefc]; 
+     printf("Faculty %d will issue the book\n",mc1+1); 
+     mc1++; 
+     mc++; 
+     iterativefc++; 
+    } 
+   } 
+   else if(sequencecounter!=iterativesc) 
+   { 
+    while(iterativesc!=sequencecounter) 
+    { 
+     m[mc2]= s[iterativesc]; 
+     printf("Student %d will issue the book\n",mc2+1); 
+     mc2++; 
+     mc++; 
+     iterativesc++; 
+    } 
+   } 
+  } 
+ } 
+ else if(firstcome==0) 
+ { 
+  while(iterativesc!=sequencecounter) 
+  {  
+   m[mc2]= s[iterativesc]; 
+   printf("Student %d issued the book\n",mc2+1); 
+   mc2++; 
+   mc++; 
+   iterativesc++; 
+  } 
+ } 
+ else if(sequencecounter==0) 
+ { 
+  while(iterativefc!=firstcome) 
+  { 
+   m[mc1]= f[iterativefc]; 
+   printf("Faculty %d issued the book\n",mc1+1); 
+   mc1++; 
+   mc++; 
+   iterativefc++; 
+  }}} 
+main() 
+{ 
+ printf(" students.... : "); 
+ scanf("%d",&sequencecounter); 
+ printf("faculty......: "); 
+ scanf("%d",&firstcome); 
+ struct t fac[firstcome],std[sequencecounter]; 
+ printf("\n"); 
+ for(z=0;z<sequencecounter;z++) 
+ { 
+  printf("arrival time(student)%d = ",z+1); 
+  scanf("%d",&std[z].arrivaltime); 
+ } 
+ for(z=0;z<firstcome;z++) 
+ { 
+  printf("Enter arrival time(faculty) %d = ",z+1); 
+  scanf("%d",&fac[z].arrivaltime); 
+ } 
+ program(fac,std); 
+} 
